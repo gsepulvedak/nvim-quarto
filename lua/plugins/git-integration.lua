@@ -12,7 +12,7 @@ return {
     },
   },
   { -- Adds Tim Pope's fugitive plugin which serves as a wrapper for CLI git
-    'tpope/vim-fugitive.nvim',
+    'tpope/vim-fugitive',
   },
 }
 -- vim: ts=2 sts=2 sw=2 et
