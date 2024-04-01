@@ -2,6 +2,12 @@ return {
   {
     'R-nvim/R.nvim',
     lazy = false,
+    config = function()
+      local opts = {
+        setwd = 'nvim',
+        csv_app = 'terminal:vd',
+      }
+    end,
   },
   'R-nvim/cmp-r',
   {
