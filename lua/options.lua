@@ -20,6 +20,12 @@ vim.opt.showmode = false
 --  See `:help 'clipboard'`
 vim.opt.clipboard = 'unnamedplus'
 
+-- use less indentation
+local tabsize = 2
+vim.opt.expandtab = true
+vim.opt.shiftwidth = tabsize
+vim.opt.tabstop = tabsize
+
 -- Enable break indent
 vim.opt.breakindent = true
 

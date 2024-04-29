@@ -4,15 +4,17 @@ return {
   },
   {
     'williamboman/mason-lspconfig.nvim',
+    dependencies = { 'williamboman/mason.nvim' },
   },
   { -- LSP Configuration & Plugins
     'neovim/nvim-lspconfig',
     dependencies = {
       -- Automatically install LSPs and related tools to stdpath for Neovim
+      'williamboman/mason-lspconfig.nvim',
       'WhoIsSethDaniel/mason-tool-installer.nvim',
 
       -- Useful status updates for LSP.
-      -- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
+      -- NOTE: `opts = {}` is the same as calling `require("fidget").setup({})`
       { 'j-hui/fidget.nvim', opts = {} },
 
       -- `neodev` configures Lua LSP for your Neovim config, runtime and plugins
@@ -74,7 +76,7 @@ return {
           map('gI', require('telescope.builtin').lsp_implementations, '[G]oto [I]mplementation')
 
           -- Jump to the type of the word under your cursor.
-          --  Useful when you're not sure what type a variable is and you want to see
+          --  Useful when you"re not sure what type a variable is and you want to see
           --  the definition of its *type*, not where it was *defined*.
           map('<leader>D', require('telescope.builtin').lsp_type_definitions, 'Type [D]efinition')
 
@@ -88,11 +90,12 @@ return {
 
           -- Rename the variable under your cursor.
           --  Most Language Servers support renaming across files, etc.
-          map('<leader>rn', vim.lsp.buf.rename, '[R]e[n]ame')
+          map('<leader>cn', vim.lsp.buf.rename, '[C]ode re[n]ame')
 
           -- Execute a code action, usually your cursor needs to be on top of an error
           -- or a suggestion from your LSP for this to activate.
           map('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction')
+          map('<leader>cf', vim.lsp.buf.format, '[C]ode [F]ormat')
 
           -- Opens a popup that displays documentation about the word under your cursor
           --  See `:help K` for why this keymap.
@@ -162,12 +165,23 @@ return {
                 callSnippet = 'Replace',
               },
               -- You can toggle below to ignore Lua_LS's noisy `missing-fields` warnings
-              -- diagnostics = { disable = { 'missing-fields' } },
+              diagnostics = {
+                disable = {
+                  'trailing-space',
+                  -- "missing-fields"
+                },
+              },
+              telemetry = {
+                enable = false,
+              }
             },
           },
         },
         julials = {},
-        marksman = {},
+        marksman = {
+          filetypes = { 'markdown', 'quarto' },
+          root_dir = require('lspconfig.util').root_pattern('.git', '.marksman.toml', '_quarto.yml'),
+        },
         r_language_server = {},
       }
 
