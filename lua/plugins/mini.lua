@@ -19,8 +19,13 @@ return {
         return '%2l:%-2v'
       end
 
-      -- ... and there is more!
-      --  Check out: https://github.com/echasnovski/mini.nvim
+      require("mini.files").setup({
+        windows = { preview = true },
+      })
+      local minifiles_toggle = function(...)
+        if not MiniFiles.close() then MiniFiles.open(...) end
+      end
+      vim.keymap.set('n', '<leader>F', minifiles_toggle, { desc = "Toggle mini.files buffer" })
     end,
   },
 }

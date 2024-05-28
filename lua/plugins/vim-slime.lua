@@ -4,6 +4,7 @@ return {
     init = function()
       vim.g.slime_target = 'tmux'
       vim.g.slime_bracketed_paste = 1
+      vim.cmd([[ let g:slime_default_config = { "socket_name": "default", "target_pane": "1" } ]])
     end,
     config = function()
       vim.keymap.set('v', '<leader>S>', '<Plug>SlimeRegionSend<CR>', { desc = '[S]lime: send visually selected region' })

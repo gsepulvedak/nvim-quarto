@@ -34,7 +34,16 @@ return {
       --  into multiple repos for maintenance purposes.
       'hrsh7th/cmp-nvim-lsp',
       'hrsh7th/cmp-path',
-      'jmbuhr/otter.nvim',
+      'onsails/lspkind-nvim',
+      { -- otter is for the Quarto completion source 
+        "jmbuhr/otter.nvim", 
+        dev = false,
+        opts = {
+          buffers = {
+            set_filetype = true,
+          }
+        },
+      },
     },
     config = function()
       -- See `:help cmp`
@@ -67,7 +76,7 @@ return {
           -- Accept ([y]es) the completion.
           --  This will auto-import if your LSP supports it.
           --  This will expand snippets if the LSP sent a snippet.
-          ['<C-y>'] = cmp.mapping.confirm { select = true },
+          ['<CR>'] = cmp.mapping.confirm { select = true },
 
           -- Manually trigger a completion from nvim-cmp.
           --  Generally you don't need this, because nvim-cmp will display
@@ -95,6 +104,20 @@ return {
 
           -- For more advanced Luasnip keymaps (e.g. selecting choice nodes, expansion) see:
           --    https://github.com/L3MON4D3/LuaSnip?tab=readme-ov-file#keymaps
+        },        
+        ---@diagnostic disable-next-line: missing-fields
+        formatting = {
+          format = require("lspkind").cmp_format({
+            mode = 'symbol',
+            menu = {
+              otter = '[🦦]',
+              nvim_lsp = '[LSP]',
+              luasnip = '[snip]',
+              path = '[path]',
+              treesitter = '[TS]',
+              emoji = '[emoji]',
+            },
+          }),
         },
         sources = {
           { name = 'nvim_lsp' },
@@ -115,7 +138,7 @@ return {
       local cmp_autopairs = require 'nvim-autopairs.completion.cmp'
       local cmp = require 'cmp'
       cmp.event:on('confirm_done', cmp_autopairs.on_confirm_done())
-      require('nvim-autopairs').remove_rule '`'
+      require('nvim-autopairs').remove_rule('`')
     end,
   },
 }

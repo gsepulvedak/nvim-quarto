@@ -50,6 +50,10 @@ vim.opt.timeoutlen = 300
 vim.opt.splitright = true
 vim.opt.splitbelow = true
 
+-- Set some options for the terminal buffer appearance and behaviour
+vim.api.nvim_command("autocmd TermOpen * setlocal nonumber")       -- no numbers
+vim.api.nvim_command("autocmd TermEnter * setlocal signcolumn=no") -- no sign column
+
 -- Sets how neovim will display certain whitespace characters in the editor.
 --  See `:help 'list'`
 --  and `:help 'listchars'`

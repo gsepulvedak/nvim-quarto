@@ -1,4 +1,5 @@
 vim.b.slime_cell_delimiter = "```"
+vim.g.slime_bracketed_paste = 1
 
 -- Insert code chunk keybindings
 vim.keymap.set('n', '<leader>qir', '<Esc>O```{r}<Esc>o```<Esc>O', { desc = '[I]nsert [R] chunk' })
