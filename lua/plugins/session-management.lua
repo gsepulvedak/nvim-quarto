@@ -15,12 +15,12 @@ return {
     },
     {
        "<leader>WL", 
-      "<cmd>SessionManager save_current_session<cr>", 
+      "<cmd>SessionManager load_session<cr>", 
       desc = "[W]orkspace: [L]oad session (save modified buffers)"
     },
     {
        "<leader>Wl", 
-      "<cmd>SessionManager! save_current_session<cr>", 
+      "<cmd>SessionManager! load_session<cr>", 
       desc = "[W]orkspace: [l]oad session (don't save modified buffers)"
     },
   },
