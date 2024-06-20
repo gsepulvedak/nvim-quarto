@@ -48,4 +48,8 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   end,
 })
 
+-- Open a terminal
+vim.keymap.set("n", "<leader>tr", ":70 vsplit term://bash<cr>", { desc = "Open a bash terminal to the right" })
+vim.keymap.set("n", "<leader>tb", ":12 split term://bash<cr>", { desc = "Open a bash terminal below" })
+
 -- vim: ts=2 sts=2 sw=2 et
