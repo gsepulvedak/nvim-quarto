@@ -98,6 +98,8 @@ return {
           },
         },
     })
+      -- Associate quarto/rmarkdown filetypes with markdown parser
+      vim.treesitter.language.register("markdown", { "rmarkdown", "quarto" })
       -- Make textobj moves repeatable on the usual vim keys:
       local ts_repeat_move = require("nvim-treesitter.textobjects.repeatable_move")
       vim.keymap.set({ "n", "x", "o" }, ";", ts_repeat_move.repeat_last_move)
