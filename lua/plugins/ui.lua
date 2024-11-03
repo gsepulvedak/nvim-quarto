@@ -1,11 +1,13 @@
 return {
   { -- show tree of symbols in the current file
-    'simrat39/symbols-outline.nvim',
-    cmd = 'SymbolsOutline',
+    'stevearc/aerial.nvim',
     keys = {
-      { '<leader>do', ':SymbolsOutline<cr>', desc = 'Toggle [d]ocument symbols [o]utline' },
+      { '<leader>do', "<cmd>AerialToggle<CR>", desc = 'Toggle [d]ocument [o]utline (aerial)' },
+      { '<leader>dn', "<cmd>AerialNavToggle<CR>", desc = 'Toggle [d]ocument [n]avigator (aerial)' },
     },
-    opts = {},
+    opts = {
+      layout = { min_width = 25 },
+    },
   },
   { -- Highlight todo, notes, etc in comments
     'folke/todo-comments.nvim',
