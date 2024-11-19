@@ -10,4 +10,12 @@ return {
       { '<leader>ct', '<cmd>Tabularize /|<cr>', desc = '[C]ode [T]abularise' },
     },
   },
+  {
+  'hat0uma/csvview.nvim',
+  ft = { "csv", "tsv" },
+  config = function()
+    require('csvview').setup({})
+    vim.keymap.set('n', '<localleader>cv', '<cmd>CsvViewToggle <cr>', { desc = 'Toggle [c]sv [v]iewer' })
+  end
+  },
 }
