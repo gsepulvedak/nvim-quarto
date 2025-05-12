@@ -27,6 +27,9 @@ return {
       local util = require("lspconfig.util")
 
       local servers = {
+        air = {
+          manual_install = true,
+        },
         lua_ls = {
           settings = {
             Lua = {
@@ -52,11 +55,16 @@ return {
           root_dir = util.root_pattern('.git', '.marksman.toml', '_quarto.yml'),
         },
         r_language_server = {
-          -- filetypes = { "r", "rmd", "quarto" }, 
+          filetypes = { "r" }, 
           -- root_dir = function(files_tbl)
           --   local file_paths = vim.fs.find(files_tbl, { stop = vim.env.HOME })
           --   return vim.fs.dirname(file_paths[1]) or vim.env.HOME
           -- end,
+          manual_install = true,
+          server_capabilities = {
+            documentFormattingProvider = false,
+            documentRangeFormattingProvider = false,
+          },
           settings = {
             r = {
               lsp = {
@@ -66,6 +74,10 @@ return {
           },
         },
         pylsp = true,
+        hls = {
+          manual_install = true,
+          filetypes = { 'haskell', 'lhaskell', 'cabal' },
+        }
       }
 
       local servers_to_install = vim.tbl_filter(function(key)
