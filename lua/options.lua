@@ -72,4 +72,9 @@ vim.opt.scrolloff = 10
 -- Nice borders on UI windows
 vim.opt.winborder = "rounded"
 
+-- Set diagnostics to show as virtual text on current line (>= 0.11)
+vim.diagnostic.config({
+  virtual_text = { current_line = true },
+})
+
 -- vim: ts=2 sts=2 sw=2 et
