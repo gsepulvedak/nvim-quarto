@@ -23,31 +23,17 @@ return {
       vim.keymap.set('n', '<leader>mq', '<cmd>PeekClose<CR>', { desc = '[m]arkdown preview [q]uit' })
     end,
   },
-  { -- highlight markdown headings and code blocks etc.
-    'lukas-reineke/headlines.nvim',
-    dependencies = 'nvim-treesitter/nvim-treesitter',
+  {
+    'MeanderingProgrammer/render-markdown.nvim',
+    ft = { 'markdown', 'rmd', 'quarto' },
     config = function()
-      require('headlines').setup {
-        quarto = {
-          query = vim.treesitter.query.parse(
-            'markdown',
-            [[
-                (fenced_code_block) @codeblock
-                ]]
-          ),
-          codeblock_highlight = 'CodeBlock',
-          treesitter_language = 'markdown',
-        },
-        markdown = {
-          query = vim.treesitter.query.parse(
-            'markdown',
-            [[
-                (fenced_code_block) @codeblock
-                ]]
-          ),
-          codeblock_highlight = 'CodeBlock',
-        },
-      }
-    end,
-  },
+      require("render-markdown").setup({
+        render_modes = true,
+        heading = { enabled = false },
+        code = { language_icon = false },
+        dash = { enabled = false },
+        completions = { blink = { enabled = true } },
+      })
+    end
+  }
 }
