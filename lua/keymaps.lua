@@ -52,4 +52,17 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 vim.keymap.set("n", "<leader>tr", ":70 vsplit term://bash<cr>", { desc = "Open a bash terminal to the right" })
 vim.keymap.set("n", "<leader>tb", ":12 split term://bash<cr>", { desc = "Open a bash terminal below" })
 
+-- dark/light mode toggle
+local function toggle_theme()
+  if vim.opt.background:get() == "dark" then
+    vim.opt.background = "light"
+    -- vim.cmd("colorscheme tokyonight-day")
+  else
+    vim.opt.background = "dark"
+    -- vim.cmd("colorscheme tokyonight-moon")
+  end
+end
+
+vim.keymap.set({ 'n', 't' }, "<leader>m", toggle_theme, {})
+
 -- vim: ts=2 sts=2 sw=2 et
