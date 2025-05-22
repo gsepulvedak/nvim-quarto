@@ -13,5 +13,19 @@ return {
   init = function()
     -- Your DBUI configuration
     vim.g.db_ui_use_nerd_fonts = 1
+    
+    local function set_save_location()
+      local cwd = vim.fn.getcwd()
+      local rproj_files = vim.fn.globpath(cwd, "*.Rproj", false, true)
+
+      if #rproj_files > 0 then
+        vim.g.db_ui_save_location = "./sql"
+      else
+        vim.g.db_ui_save_location = "~/.local/share/db_ui"
+      end
+    end
+
+    set_save_location()
+
   end,
 }
