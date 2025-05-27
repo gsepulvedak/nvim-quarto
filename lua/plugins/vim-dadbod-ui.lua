@@ -16,7 +16,7 @@ return {
     
     local function set_save_location()
       local cwd = vim.fn.getcwd()
-      local rproj_files = vim.fn.globpath(cwd, "*.Rproj", false, true)
+      local rproj_files = vim.fn.globpath(cwd, "*.R", false, true)
 
       if #rproj_files > 0 then
         vim.g.db_ui_save_location = "./sql"
