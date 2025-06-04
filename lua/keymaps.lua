@@ -65,4 +65,36 @@ end
 
 vim.keymap.set({ 'n', 't' }, "<leader>m", toggle_theme, {})
 
+-- remap to insert pipe operator when working with R files
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "r",
+  callback = function()
+    vim.keymap.set("i", "<C-p>", "%>%<cr>", { buffer = true })
+  end,
+})
+
+-- remap to get name of R data.frame object in script
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "r",
+  callback = function()
+    vim.keymap.set("n", "<leader>rn", function()
+      local word = vim.fn.expand("<cword>")
+      local cmd = "names(" .. word .. ")\n"
+      require("iron.core").send(nil, { cmd })
+    end, { desc = "Get data frame column names", noremap = true, silent = true })
+  end,
+})
+
+-- remap to view R data.frame object
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "r",
+  callback = function()
+    vim.keymap.set("n", "<leader>rv", function()
+      local word = vim.fn.expand("<cword>")
+      local cmd = "View(" .. word .. ")\n"
+      require("iron.core").send(nil, { cmd })
+    end, { desc = "View data frame", noremap = true, silent = true })
+  end,
+})
+
 -- vim: ts=2 sts=2 sw=2 et
