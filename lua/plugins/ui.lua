@@ -7,6 +7,8 @@ return {
     },
     opts = {
       layout = { min_width = 25 },
+      filter_kind = false,
+      backends = { "lsp" }
     },
   },
   { -- Highlight todo, notes, etc in comments

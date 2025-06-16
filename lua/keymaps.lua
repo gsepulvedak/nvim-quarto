@@ -97,4 +97,27 @@ vim.api.nvim_create_autocmd("FileType", {
   end,
 })
 
+-- R: map rL to ls()
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "r",
+  callback = function()
+    vim.keymap.set("n", "<leader>rL", function()
+      local cmd = "ls()\n"
+      require("iron.core").send(nil, { cmd })
+    end, { desc = "[L]ist environment objects", noremap = true, silent = true })
+  end,
+})
+
+-- R: map rr to nrow(df)
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "r",
+  callback = function()
+    vim.keymap.set("n", "<leader>rr", function()
+      local word = vim.fn.expand("<cword>")
+      local cmd = "nrow(" .. word .. ")\n"
+      require("iron.core").send(nil, { cmd })
+    end, { desc = "Show number of [r]ows", noremap = true, silent = true })
+  end,
+})
+
 -- vim: ts=2 sts=2 sw=2 et
