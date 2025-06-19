@@ -21,6 +21,7 @@ return {
           'luadoc',
           'markdown',
           'markdown_inline',
+          'python',
           'r',
           'rnoweb',
           'regex',
@@ -36,6 +37,10 @@ return {
           --  If you are experiencing weird indenting issues, add the language to
           --  the list of additional_vim_regex_highlighting and disabled languages for indent.
           additional_vim_regex_highlighting = { 'ruby' },
+          -- Enable injections for markdown fenced code blocks
+          injections = {
+            enable = true,
+          },
         },
         indent = {
           enable = true,

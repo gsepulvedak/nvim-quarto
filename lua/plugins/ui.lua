@@ -8,7 +8,9 @@ return {
     opts = {
       layout = { min_width = 25 },
       filter_kind = false,
-      backends = { "lsp" }
+      backends = { "treesitter", "lsp", "markdown" },
+      -- For Quarto files, enable multiple language support
+      attach_mode = "window",
     },
   },
   { -- Highlight todo, notes, etc in comments
