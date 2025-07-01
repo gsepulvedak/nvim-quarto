@@ -62,6 +62,7 @@ return {
             keymaps = {
               ["ac"] = { query = "@block.outer", desc = "Select [a]round [c]ode block" },
               ["ic"] = { query = "@block.inner", desc = "Select [i]nside [c]ode block" },
+              ["si"] = { query = "@select.inner", desc = "Select [i]nside [s]elect expression" },
             },
           },
           swap = {
