@@ -69,10 +69,17 @@ vim.keymap.set({ 'n', 't' }, "<leader>m", toggle_theme, {})
 vim.api.nvim_create_autocmd("FileType", {
   pattern = "r",
   callback = function()
-    vim.keymap.set("i", "<C-p>", "%>%<cr>", { buffer = true })
+    vim.keymap.set("i", "<C-p>", "<Esc>$a %>%", { buffer = true })
   end,
 })
 
+-- remap to remove pipe operator when working with R files
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "r",
+  callback = function()
+    vim.keymap.set({ "i", "n" }, "<C-ñ>", "<Esc>$dF ", { buffer = true })
+  end,
+})
 -- remap to get name of R data.frame object in script
 vim.api.nvim_create_autocmd("FileType", {
   pattern = "r",
@@ -117,6 +124,18 @@ vim.api.nvim_create_autocmd("FileType", {
       local cmd = "nrow(" .. word .. ")\n"
       require("iron.core").send(nil, { cmd })
     end, { desc = "Show number of [r]ows", noremap = true, silent = true })
+  end,
+})
+
+-- R: map rg to glimpse(df)
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "r",
+  callback = function()
+    vim.keymap.set("n", "<leader>rg", function()
+      local word = vim.fn.expand("<cword>")
+      local cmd = "dplyr::glimpse(" .. word .. ")\n"
+      require("iron.core").send(nil, { cmd })
+    end, { desc = "[G]limpse a dataframe", noremap = true, silent = true })
   end,
 })
 

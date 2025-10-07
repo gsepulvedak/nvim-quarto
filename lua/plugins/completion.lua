@@ -64,7 +64,7 @@ return {
         default = { 'lsp', 'path', 'snippets', 'buffer' },
 
         per_filetype = {
-          sql = { 'dadbod'},
+          sql = { 'dadbod', 'buffer' },
           quarto = { 'lsp', 'path', 'snippets', 'buffer' },
           rmarkdown = { 'lsp', 'path', 'snippets', 'buffer' },
         },
